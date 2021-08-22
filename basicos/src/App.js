@@ -1,10 +1,13 @@
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
+  const year = new Date().getFullYear();
   return (
-    <div className="App">
-       <Header></Header>
-    </div>
+    <>
+       <Header title="Tienda Virtual"></Header>
+       <Footer year={year}></Footer>
+    </>
   );
 }
 

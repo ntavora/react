@@ -1,10 +1,9 @@
 import React from 'react';
 
-function Header() {
-    const message = 'Hello World!'
+function Header(props) {
     return (
         <div className="App">
-            <h1>{message}</h1>
+            <h1 className="encabezado">{props.title}</h1>
         </div>
     );
 }
