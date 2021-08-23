@@ -1,0 +1,11 @@
+.carrito{
+    position: fixed;
+    top:0;
+    right: 0;
+    background-color: 0;
+    width: 400px;
+    border:1px solid #333;
+}
+.carrito h2 {
+    text-align: center;
+}

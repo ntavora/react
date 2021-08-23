@@ -1,16 +1,20 @@
 import React from 'react';
-const Product = ({ producto }) => {
-
-    const selectProduct = id =>{
-        console.log(`comprando ${id}`);
+const Product = ({ productos, producto, carrito, addToCart }) => {
+    const { nombre, id, precio } = producto;
+    const selectProduct = id => {
+        const prod = productos.filter(p => p.id === id)[0];
+        addToCart([
+            ...carrito, 
+            prod]);
+            console.log(carrito);
     }
     return (<div>
-        <h4>Nombre:<b>{producto.nombre}</b></h4>
-        <h4>Precio:<b>{producto.precio}</b></h4>
+        <h4>Nombre:<b>{nombre}</b></h4>
+        <h4>Precio:<b>{precio}</b></h4>
         <button
             type="button"
-            onClick={() => selectProduct(producto.id)}>
-Comprar
+            onClick={() => selectProduct(id)}>
+            Comprar
         </button>
     </div>);
 }
