@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import FooterComponent from "./components/Footer";
-import Product from './components/Product';
+import Product from './components/Product/Product';
 import Carrito from './components/Carrito/Carrito';
 function App() {
   const [productos, guardarProductos] = useState([
-    { id: 1, nombre: 'Ades', precio: 140 },
+    { id: 1, nombre: 'Jugo Ades', precio: 140 },
     { id: 2, nombre: 'Jugo Baggio', precio: 115 },
     { id: 3, nombre: 'Exprimido de naranja', precio: 140 },
     { id: 4, nombre: 'Jugo Tang', precio: 115 },
@@ -20,18 +20,22 @@ function App() {
       <Header title="Tienda Virtual"></Header>
 
       <h1>Listado de productos</h1>
-      {productos.map(producto => (
-        <Product
-          key={producto.id}
-          producto={producto}
-          carrito={carrito}
-          productos={productos}
-          addToCart={addToCart}
-        />
+      <div className="container">
+        {productos.map(producto => (
+          <Product
+            key={producto.id}
+            producto={producto}
+            carrito={carrito}
+            productos={productos}
+            addToCart={addToCart}
+          />
 
-      ))}
+        ))}
+      </div>
+
       <Carrito
         carrito={carrito}
+        addToCart={addToCart}
       />
       {<FooterComponent year={year}></FooterComponent>}
     </Fragment>
