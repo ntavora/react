@@ -5,7 +5,7 @@ import Product from './components/Product';
 function App() {
    const [productos, guardarProductos] = useState([
      {id:1, nombre:'Ades', precio:140},
-     {id:1, nombre:'Jugo Baggio', precio:115},
+     {id:2, nombre:'Jugo Baggio', precio:115},
    ]);
   const year = new Date().getFullYear();
   return (
@@ -14,7 +14,7 @@ function App() {
     
       <h1>Listado de productos</h1>
       {productos.map(producto => (
-        <Product producto={producto}></Product>
+        <Product key={producto.id} producto={producto}></Product>
       )) }
       { <FooterComponent year={year}></FooterComponent> }
     </Fragment>
