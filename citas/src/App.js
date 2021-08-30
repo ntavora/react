@@ -10,8 +10,14 @@ function App() {
       ...citas,
       cita
     ]);
-    console.log(citas);
   }
+
+  const eliminarCita = id => {
+    const nuevasCitas = citas.filter( cita => cita.id !== id);
+    guardarCitas(nuevasCitas);
+  }
+
+  const titulo = citas.length === 0 ? "No hay citas" : "Administra tus  citas";
   return (
     <Fragment>
       <h1>Administrador de contenido</h1>
@@ -22,11 +28,12 @@ function App() {
               crearCita={crearCita} />
           </div>
           <div className="one-half column">
-            <h2>Listado de citas</h2>
+            <h2>{titulo}</h2>
             {citas.map(cita =>
-              (<Cita
-               key={cita.id}
-               cita={cita}/>)
+            (<Cita
+              key={cita.id}
+              cita={cita}
+              eliminarCita={eliminarCita} />)
             )}
           </div>
         </div>
