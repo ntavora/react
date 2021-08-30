@@ -1,6 +1,22 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 const Formulario = () => {
+
+    const [cita,actualizarCita] = useState({
+        mascota:'',
+        propietario:'',
+        fecha:'',
+        hora:'',
+        sintomas:''
+    })
+
+    const handleChange = e =>{
+        actualizarCita({
+            ...cita,
+            [e.target.name] : e.target.value
+        })
+    }
+
     return (
         <Fragment>
             <h2>Crear cita</h2>
@@ -11,6 +27,7 @@ const Formulario = () => {
                     name="mascota"
                     className="u-full-width"
                     placeholder="Nombre Mascota"
+                    onChange={handleChange}
                 />
 
                 <label>Nombre Duenio</label>
@@ -19,26 +36,30 @@ const Formulario = () => {
                     name="propietario"
                     className="u-full-width"
                     placeholder="Nombre Duenio de la mascota"
+                    onChange={handleChange}
                 />
 
                 <label>Fecha</label>
                 <input
                     type="date"
-                    name="Fecha"
+                    name="fecha"
                     className="u-full-width"
+                    onChange={handleChange}
                 />
 
                 <label>Hora</label>
                 <input
                     type="time"
-                    name="Hora"
+                    name="hora"
                     className="u-full-width"
+                    onChange={handleChange}
                 />
 
                 <label>Nombre de Mascota</label>
                 <textarea
                     name="sintomas"
                     className="u-full-width"
+                    onChange={handleChange}
                 ></textarea>
 
                 <button
