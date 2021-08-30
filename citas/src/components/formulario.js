@@ -10,17 +10,34 @@ const Formulario = () => {
         sintomas:''
     })
 
+    const [error,actualizarError] = useState(false)
     const handleChange = e =>{
         actualizarCita({
             ...cita,
             [e.target.name] : e.target.value
         })
     }
+    // Envio del formulario
+
+    const submitCita = e => {
+        e.preventDefault();
+        if(cita.mascota.trim() === '' ||
+           cita.propietario.trim() === '' ||
+           cita.fecha.trim() === '' ||
+           cita.hora.trim() === '' ||
+           cita.sintomas.trim() === ''){
+            actualizarError(true);
+            return;
+        }
+    };
 
     return (
         <Fragment>
             <h2>Crear cita</h2>
-            <form>
+            {error ? <p className="alerta-error">TODOS LOS CAMPOS SON OBLIGATORIOS</p>:null}
+            <form 
+                onSubmit={submitCita}
+            >
                 <label>Nombre de Mascota</label>
                 <input
                     type="text"
@@ -28,6 +45,7 @@ const Formulario = () => {
                     className="u-full-width"
                     placeholder="Nombre Mascota"
                     onChange={handleChange}
+                    value={cita.mascota}
                 />
 
                 <label>Nombre Duenio</label>
@@ -37,6 +55,7 @@ const Formulario = () => {
                     className="u-full-width"
                     placeholder="Nombre Duenio de la mascota"
                     onChange={handleChange}
+                    value={cita.propietario}
                 />
 
                 <label>Fecha</label>
@@ -45,6 +64,7 @@ const Formulario = () => {
                     name="fecha"
                     className="u-full-width"
                     onChange={handleChange}
+                    value={cita.fecha}
                 />
 
                 <label>Hora</label>
@@ -53,13 +73,15 @@ const Formulario = () => {
                     name="hora"
                     className="u-full-width"
                     onChange={handleChange}
+                    value={cita.hora}
                 />
 
-                <label>Nombre de Mascota</label>
+                <label>Sintomas</label>
                 <textarea
                     name="sintomas"
                     className="u-full-width"
                     onChange={handleChange}
+                    value={cita.sintomas}
                 ></textarea>
 
                 <button
