@@ -1,8 +1,6 @@
-import React, { Fragment, useState } from 'react';
-import Header from "./components/Header/Header";
-import FooterComponent from "./components/Footer";
-import Product from './components/Product/Product';
-import Carrito from './components/Carrito/Carrito';
+import EvergageScript from './components/EvergageScript';
+import Product from 'components/ProductPages';
+
 function App() {
   const [productos, guardarProductos] = useState([
     { id: 1, nombre: 'Jugo Ades', precio: 140 },
@@ -12,11 +10,13 @@ function App() {
     { id: 5, nombre: 'Mirinda', precio: 140 },
     { id: 6, nombre: 'Fanta', precio: 115 },
   ]);
-  const year = new Date().getFullYear();
-
   const [carrito, addToCart] = useState([]);
   return (
-    <Fragment>
+    <>
+      <EvergageScript
+        account="partnerdevsus"
+        dataset="ntavora"
+      />
       <Header title="Tienda Virtual"></Header>
 
       <h1>Listado de productos</h1>
@@ -38,7 +38,7 @@ function App() {
         addToCart={addToCart}
       />
       {<FooterComponent year={year}></FooterComponent>}
-    </Fragment>
+    </>
   );
 }
 
