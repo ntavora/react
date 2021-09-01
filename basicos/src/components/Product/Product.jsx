@@ -12,6 +12,7 @@ const Product = ({ productos, producto, carrito, addToCart, guardarProductos }) 
         window.Evergage.sendEvent({
             itemAction: window.Evergage.ItemAction.AddToCart,
             url:window.location.href,
+            action:"AddToCart",
             cart: {
                 singleLine: {
                     Product: {
@@ -28,9 +29,26 @@ const Product = ({ productos, producto, carrito, addToCart, guardarProductos }) 
     }
 
     const removeFromCart = id => {
+        const removedProduct = carrito.filter(p => p.id !== id);
         const prod = carrito.filter(p => p.id !== id);
         addToCart(prod);
-        console.log(carrito);
+        window.Evergage.sendEvent({
+            itemAction: window.Evergage.ItemAction.RemoveFromCart,
+            url:window.location.href,
+            action:"RemoveFromCart",
+            cart: {
+                singleLine: {
+                    Product: {
+                        sku: {
+                            _id: "1049698"
+                        },
+                        price: 89.990,
+                        quantity: 1,
+                        _id: "PROD_1049698"
+                    }
+                }
+            }
+        });
     }
     return (<div className="product-container" data-id={id}>
         <h4><b className="product-name">{nombre}</b></h4>
